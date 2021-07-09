@@ -1,0 +1,45 @@
+.wrap{
+  min-width: 500px;
+  max-width: 700px;
+  margin: 5px;
+}
+.menu{
+  display: table;
+  width: 100%;
+  table-layout: fixed;
+}
+.menu_item{
+  display: table-cell;
+}
+.menu_link{
+  display: block;
+  height: 36px;
+  border: 1px solid #ddd;
+  font-size: 12px;
+  line-height: 36px;
+  color: #333;
+  text-align: center;
+}
+.menu_item + .menu_item .menu_link{
+  margin-left: -1px;
+  /* 첫 메뉴 이후의 메뉴들의 왼쪽 외곽선을 -1px을 통해 겹친다. */
+}
+.menu_item:hover .menu_link{
+  color: green;
+  font-weight: bold;
+}
+.menu_item.active .menu_link{
+  position: relative; 
+  /* 
+  위에서 margin-left를 통해 옆 메뉴의 외곽선이 겹쳐지는데,
+  active된 메뉴의 외곽선 색이 달라야 하지만 겹쳐진 외곽선이 위로 올라오기 때문에
+  position: relative로 올려 옆 메뉴의 외곽선을 가린다.
+  */
+  border-color: #555;
+  font-weight: bold;
+  color: #fff;
+  background-color: gray;
+}
+a:hover{
+  text-decoration: none;
+}
