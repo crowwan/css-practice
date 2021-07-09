@@ -178,3 +178,93 @@ header{
 - `position: fixed;`를 통해 고정시킬 수 있고, 고정되는 위치는 따로 지정해줘야 한다.
 - `.container`에 최소 높이를 100%로 지정했으므로 `footer`가 화면 밑에 있게 된다. 이를 해결하기 위해 `margin-top: -100px;`을 하면 `.content`의 내용이 `header`에 가려지게 되므로, 음수 마진과 헤더의 높이를 더한 200px을 `padding`으로 갖으면 모든 요소가 화면에 보이게 된다.
 - 이때 `.container`에 `padding`을 주면 최소 높이에 패딩이 더해지기 때문에 `box-sizing: border-box`를 설정해야 한다. `.content`에 추가하는 경우에는 `.container`의 안의 내용에 패딩이 생기므로 상관이 없다. **하지만 명백히 둘의 차이는 있다고 생각한다.**
+
+---
+
+## 메뉴
+### 1단 메뉴
+```css
+.menu{
+  display: table;
+  width: 100%;
+  table-layout: fixed;
+}
+.menu_item{
+  display: table-cell;
+}
+.menu_link{
+  display: block;
+  height: 36px;
+  border: 1px solid #ddd;
+  font-size: 12px;
+  line-height: 36px;
+  color: #333;
+  text-align: center;
+}
+.menu_item + .menu_item .menu_link{
+  margin-left: -1px;
+  /* 첫 메뉴 이후의 메뉴들의 왼쪽 외곽선을 -1px을 통해 겹친다. */
+}
+.menu_item:hover .menu_link{
+  color: green;
+  font-weight: bold;
+}
+.menu_item.active .menu_link{
+  position: relative; 
+  /* 
+  위에서 margin-left를 통해 옆 메뉴의 외곽선이 겹쳐지는데,
+  active된 메뉴의 외곽선 색이 달라야 하지만 겹쳐진 외곽선이 위로 올라오기 때문에
+  position: relative로 올려 옆 메뉴의 외곽선을 가린다.
+  */
+  border-color: #555;
+  font-weight: bold;
+  color: #fff;
+  background-color: gray;
+}
+```
+- 메뉴를 만들때 `display: table`을 사용했는데 이때 외곽선이 겹쳐지지 않아 중간이 더 두꺼워 보이게 된다. 이를 해결하기 위해서 메뉴 칸의 인접선택자를 통해 `margin-left: 1px`을 했다.
+- 위에서 외곽선을 겹쳤는데 이로 인해서 메뉴의 외곽선 색이 바뀌면 옆 메뉴의 외곽선이 더 위에 올라오게 되는 현상이 나타난다. 그렇기 때문에 메뉴 칸을 `position: relative`를 통해 띄워주어 옆 메뉴의 외곽선을 가린다.
+
+### 2단메뉴
+```css
+.subMenu {
+  display: none;
+  position:absolute;
+  left: 0;
+  width: 100%;
+  min-width: 700px;
+  border-top: 1px solid #eee;
+  border-bottom: 1px solid #eee;
+}
+.subMenu .subMenu_item{
+  display: inline-block;
+}
+.subMenu_link{
+  display: block;
+  padding: 15px 35px;
+  font-size: 17px;
+  line-height: 20px;
+  color: #333;
+}
+.subMenu_item:hover .subMenu_link,
+.subMenu_item.active .subMenu_link
+{
+  font-weight: bold;
+  color: green;
+}
+.subMenu_link span{
+  position: relative;
+}
+.subMenu_item:hover span::after,
+.subMenu_item.active span::after{
+  position: absolute;
+  content: '';
+  right: 0;
+  bottom: -15px;
+  left: 0;
+  border-bottom: 2px solid green;
+}
+```
+- 2단 메뉴에서는 `display: table`을 사용하지 않았다. 
+- 여기서 중요한 것은 서브 메뉴가 `.active`를 가진 메인메뉴인 경우에 보여야 하므로 기본적으로 `display: none;`으로 가려준다.
+- 서브 메뉴가 `.active`되면 그 밑에 줄이 나타나는데 이는 앵커 테그의 `text-decoration`이 아니라 메뉴 내용을 `span`태그로 묶어 그것의 `::after`에 효과를 준다.
