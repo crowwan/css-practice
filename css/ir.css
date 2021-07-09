@@ -1,0 +1,40 @@
+ol{
+  list-style: none;
+}
+body,ol{
+  margin: 0;
+  padding: 0;
+}
+
+.wrap{
+  width: 1020px;
+  height: 650px;
+  margin: 0auto;
+  background: url(../img/promotion.png) no-repeat 0 0;
+}
+
+.blind{
+  position: absolute;
+  clip:rect(0,0,0,0);
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+}
+
+.link_point{
+  position: absolute;
+  left: 105px;
+  bottom: 395px;
+  display: block;
+  width: 125px;
+  height: 17px;
+}
+.link_join{
+  position: absolute;
+  bottom: 294px;
+  left: 340px;
+  display: block;
+  width: 340px;
+  height: 70px;
+}
