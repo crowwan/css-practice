@@ -1,0 +1,75 @@
+body{
+  font-family: '나눔고딕', NanumGothic, Dotum, '돋움',sans-serif;
+}
+body, ul,ol,li,div,a{
+  margin: 0;
+  padding: 0;
+}
+ul,ol{
+  list-style: none;
+}
+a{
+  color:inherit;
+  text-decoration: none;
+}
+.menu{
+  width: 700px;
+  margin: 20px auto 0;
+  text-align: center;
+}
+.menu_item{
+  display: inline-block;
+}
+.menu_link{
+  display: block;
+  padding: 13px 20px;
+  font-size: 20px;
+  line-height: 24px;
+  font-weight: bold;
+  color: #444;
+}
+.menu_item:hover .menu_link,
+.menu_item.active .menu_link
+{
+  color: green;
+}
+.menu_item.active .subMenu{
+  display: block;
+}
+.subMenu {
+  display: none;
+  position:absolute;
+  left: 0;
+  width: 100%;
+  min-width: 700px;
+  border-top: 1px solid #eee;
+  border-bottom: 1px solid #eee;
+}
+.subMenu .subMenu_item{
+  display: inline-block;
+}
+.subMenu_link{
+  display: block;
+  padding: 15px 35px;
+  font-size: 17px;
+  line-height: 20px;
+  color: #333;
+}
+.subMenu_item:hover .subMenu_link,
+.subMenu_item.active .subMenu_link
+{
+  font-weight: bold;
+  color: green;
+}
+.subMenu_link span{
+  position: relative;
+}
+.subMenu_item:hover span::after,
+.subMenu_item.active span::after{
+  position: absolute;
+  content: '';
+  right: 0;
+  bottom: -15px;
+  left: 0;
+  border-bottom: 2px solid green;
+}
