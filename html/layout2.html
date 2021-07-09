@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>layout2</title>
+    <link rel="stylesheet" href="../css/reset.css">
+    <style>
+      html, body, .wrap{
+        height: 100%;
+      }
+      header{
+        height: 100px;
+        background: lightgreen;
+      }
+      .container{
+        /* position: relative; */
+        display: table;
+        table-layout: fixed;
+        width: 800px;
+        min-height: 100%;
+        margin: -100px auto;
+        padding:100px 0;
+        box-sizing: border-box;
+      }
+      /* .container::after{
+        display: block;
+        content:'';
+        clear:both;
+      } */
+      .content{
+        /* float: left; 
+        height: 300px;*/
+        display: table-cell;
+        width: 500px;
+        background-color: lightsalmon;
+        border-right: 5px solid #000;
+      }
+      aside{
+        display: table-cell;
+        /* float:left;
+        height: 300px; */
+        width: 300px;
+        background-color: lightseagreen;
+      }
+      /* aside::after{
+        position: absolute;
+        width: 5px;
+        background-color: #000;
+        content: '';
+        top: 100px;
+        bottom: 100px;
+        right: 300px;
+      } */
+      footer{
+        height: 100px;
+        background-color: lightblue;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="wrap">
+      <header>header</header>
+      <div class="container">
+        <div class="content">content</div>
+        <aside>aside</aside>
+      </div>
+      <footer>
+        footer
+      </footer>
+    </div>
+  </body>
+</html>

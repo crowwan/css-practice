@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>layout4</title>
+  <link rel="stylesheet" href="../css/reset.css">
+  <style>
+    html,body,.wrap{
+      height: 100%;
+    }
+    .wrap{
+      min-width: 800px;
+      text-align: center;
+    }
+    header{
+      position: fixed;
+      top: 0; right: 0; left: 0;
+      height: 100px;
+      background: lightgreen;
+    }
+    .container{
+      min-height: 100%;
+      padding: 100px 0;
+      box-sizing: border-box;
+    }
+    .content{
+      max-width: 1200px;
+      height: 300px;
+      margin: 0 auto;
+      background-color: lightsalmon;
+    }
+    footer{
+      position: fixed;
+      bottom: 0; right: 0; left: 0;
+      height: 100px;
+      background-color: lightblue;
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header>header</header>
+    <div class="container">
+      <div class="content">content</div>
+    </div>    
+    <footer>footer</footer>
+  </div>
+</body>
+</html>
