@@ -268,3 +268,44 @@ header{
 - 2단 메뉴에서는 `display: table`을 사용하지 않았다. 
 - 여기서 중요한 것은 서브 메뉴가 `.active`를 가진 메인메뉴인 경우에 보여야 하므로 기본적으로 `display: none;`으로 가려준다.
 - 서브 메뉴가 `.active`되면 그 밑에 줄이 나타나는데 이는 앵커 테그의 `text-decoration`이 아니라 메뉴 내용을 `span`태그로 묶어 그것의 `::after`에 효과를 준다.
+
+---
+
+## 탭
+``` css
+.tab{
+  display: table;
+  table-layout: fixed;
+}
+.tab_item + .tab_item .tab_btn{
+  width: 101px;
+  margin-left: -1px;
+}
+.tab_item{
+  display: table-cell;
+}
+.tab_btn{
+  position: relative;
+  width: 100px;
+  height: 50px;
+  font-size: 16px;
+  color: #999;
+  background-color: transparent;
+  border: 1px solid #eee;
+  outline: 0;
+  cursor: pointer;
+}
+.panel_item .item_link{
+  display: block;
+  font-size: 14px;
+  line-height: 30px;
+  color: #333;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+```
+탭과 네비게이션의 차이점은 새로운 페이지가 열리느냐 아니냐이다. 탭의 경우 새로운 페이지가 열리지 않고 탭의 내용만 바뀌게 된다.
+
+- `<a>`태그가 아닌 `button`태그를 사용했다.
+- 내용 중 넘치는 것을 '...'으로 처리했다. 방법은 `overflow: hidden; white-space: nowrap; text-overflow: ellipsis;`를 넣어주면 된다.
