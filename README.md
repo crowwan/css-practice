@@ -309,3 +309,69 @@ header{
 
 - `<a>`태그가 아닌 `button`태그를 사용했다.
 - 내용 중 넘치는 것을 '...'으로 처리했다. 방법은 `overflow: hidden; white-space: nowrap; text-overflow: ellipsis;`를 넣어주면 된다.
+---
+## 이미지(썸네일)
+```css
+.main_list .item_link{
+  position: relative;
+  display: block;
+}
+```
+- `img`태그를 감싸고 있는 앵커를 이미지 크기에 맞게 `display:block`시켜준다.
+
+```css
+.main_list .img_box{
+  position: relative;
+}
+.main_list .img_box::after{
+  position: absolute;
+  top: 0; right: 0; left: 0; bottom: 0;
+  content: '';
+  background-color: rgba(0,0,0,.2);
+  border: 1px solid rgba(0,0,0,.05);
+}
+```
+- 이미지를 덮는 박스를 만들 때는 `::after`를 사용한다.
+- 이때 `::after`요소가 이미지 크기와 같게 하기 위해서 상하좌우를 모두 0으로 준다.
+```css
+.rank .down::before{
+  width: 7px;
+  height: 10px;
+  background: url(../img/rank_down.png) no-repeat;
+}
+```
+- 아이콘을 넣을 때는 아이콘의 크기를 넣어주고 `background: url()`을 통해 넣어줄 수 있다. 이 경우 `.blind`를 가진 `span`을 통해 아이콘 설명을 숨김 처리해야 한다.
+``` css
+.sub_list .info_wrap{
+  position: relative;
+  margin-top: 10px;
+}
+.sub_list .watch_later_link{
+  display: none;
+  position: absolute;
+  right: 4px;
+  bottom: 4px;
+  width: 45px;
+  height: 45px;
+  background: url(../img/later_watch.png) no-repeat;
+}
+.sub_list .img_wrap:hover .watch_later_link{
+  display: block;
+}
+```
+- 사진에 마우스를 올렸을 때 사진 위에 아이콘이 나오는 경우에는 사진에 `:hover`를 하는 것이 아닌 사진과 아이콘을 모두 감싸는 태그에 `:hover`를 한 경우에 보이게 해야지 아이콘에 올렸을 때 이상없이 작동한다.
+
+```css
+.sub_list .title{
+  display: -webkit-box;
+  max-height: 36px;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  font-size: 15px;
+  line-height: 18px;
+  color: #090909;
+}
+```
+- 말줄임을 2줄 이상에서 하고 싶을 때는 위와 같이 할 수 있지만, `-web-kit`을 지원하지 않는 브라우저에서는 `text-overflow: ellipsis;`효과가 나타나지 않고, `max-height`를 반드시 지정해줘야 한다.
