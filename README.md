@@ -375,3 +375,46 @@ header{
 }
 ```
 - 말줄임을 2줄 이상에서 하고 싶을 때는 위와 같이 할 수 있지만, `-web-kit`을 지원하지 않는 브라우저에서는 `text-overflow: ellipsis;`효과가 나타나지 않고, `max-height`를 반드시 지정해줘야 한다.
+
+---
+테이블
+```css
+table{
+  width: 500px;
+  table-layout: fixed;
+}
+```
+- 테이블을 사용할 때 모든 셀이 같은 너비를 가지게 하기 위해서 `table-layout: fixed`를 사용한다.
+``` html
+<colgroup>
+<col span='2' class='col'>
+<col span='2'>
+</colgroup>
+```
+- 테이블의 열은 `colgroup`을 통해 조작이 가능하다. 이때 열이 많을 경우는 `span`으로 묶어줄 수 있다.
+```html
+<td>
+  <div class="inner">
+    <span class="date">8</span>
+  </div>
+</td>
+```
+- 테이블 셀에서 내용을 넣고 싶을 때는 크로스 브라우징을 위해 `div`박스를 이용하는 것이 좋다. 각 브라우저마다 테이블에서 `position`을 다룰 때 이동하는 위치가 다르기 때문이다.
+```css
+table, th{
+  border: 1px solid #eaedef;
+  border-collapse: collapse;
+}
+td{
+  border-top: 1px solid #eaedef;
+  border-left: 1px solid #eaedef;
+}
+.today{
+  border: 1px solid #e0e0bf;
+  background: #ffffd9;
+}
+```
+- 테이블은 기본적으로 외곽선이 분리되어 있다. 이를 하나로 합치기 위해서 `border-collapse: collapse;`를 해줘야 하는데, 이렇게 되면 랜더링 되는 방식이 달라진다.
+> `separte`의 경우 thead > tfoot > tbody순으로 랜더링 되지만, `collapse`의 경우 오른쪽 아래부터 랜더링 된다.
+- 랜더링 방식이 바뀌므로 td에 그냥 외곽선을 줄 경우 왼쪽과 위쪽의 선이 왼쪽 셀과 위쪽 셀의 외곽선에 덮여지게 되는데, 이를 해결하기 위해서 td만 왼쪽과 위쪽의 border를 주고, 따로 바뀔 td는 border를 전체로 준다.
+- 기본적으로 테이블에 쓰이는 테그들은 z-index가 다르다.

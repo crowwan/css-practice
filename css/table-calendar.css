@@ -1,0 +1,65 @@
+table, th{
+  border: 1px solid #eaedef;
+  border-collapse: collapse;
+}
+td{
+  border-top: 1px solid #eaedef;
+  border-left: 1px solid #eaedef;
+}
+table{
+  width: 590px;
+  table-layout: fixed;
+  font-size: 12px;
+}
+
+th{
+  height: 25px;
+  color: #777;
+}
+.inner{
+  position: relative;
+  height: 70px;
+  padding: 5px;
+}
+.date{
+  font-weight: bold;
+}
+.text{
+  display: block;
+  font-style: normal;
+  margin-top: 3px;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+.dimmed{
+  color: #e7e7e7;
+}
+.date.holiday{
+  color: #f44e4e;
+}
+.text.holiday{
+  color: #f44e4e;
+}
+.text.anniversary{
+  color: #00c;
+}
+.lunar{
+  position: absolute;
+  top: 6px;
+  right: 6px;
+  font-size: 11px;
+  color: #bababa;
+}
+.blind{
+  margin: -1px;
+  overflow:hidden;
+  width: 1px;
+  height: 1px;
+  clip: rect(0,0,0,0);
+  position: absolute;
+}
+.today{
+  border: 1px solid #e0e0bf;
+  background: #ffffd9;
+}
