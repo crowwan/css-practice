@@ -508,3 +508,14 @@ td{
 -  `.popup` 요소 안에 빈 요소 혹은 가상요소를 추가하여 `.popup_layer`와 `vertical-align: middle;` 로 세로 중앙정렬
 
 다른 방법으로는 `display:table`을 이용하는 것이다.
+
+---
+## 반응형 웹
+```html
+<meta name="viewport" content="width=device-width,initial-scale=1">
+```
+반응형 웹을 만들기 위해서 메타 태그로 위 내용을 넣어줘야 한다. 그렇지 않으면 미디어 쿼리가 정상적으로 작동하지 않을 수 있다.
+```css
+@media screen and (max-width: 768px), screen and (max-height: 768px) and (orientation:landscape)
+```
+- `@media`를 이용해서 기기의 너비와 높이에 따라 변형하면 된다.
