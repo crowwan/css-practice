@@ -377,7 +377,7 @@ header{
 - 말줄임을 2줄 이상에서 하고 싶을 때는 위와 같이 할 수 있지만, `-web-kit`을 지원하지 않는 브라우저에서는 `text-overflow: ellipsis;`효과가 나타나지 않고, `max-height`를 반드시 지정해줘야 한다.
 
 ---
-테이블
+## 테이블
 ```css
 table{
   width: 500px;
@@ -418,3 +418,93 @@ td{
 > `separte`의 경우 thead > tfoot > tbody순으로 랜더링 되지만, `collapse`의 경우 오른쪽 아래부터 랜더링 된다.
 - 랜더링 방식이 바뀌므로 td에 그냥 외곽선을 줄 경우 왼쪽과 위쪽의 선이 왼쪽 셀과 위쪽 셀의 외곽선에 덮여지게 되는데, 이를 해결하기 위해서 td만 왼쪽과 위쪽의 border를 주고, 따로 바뀔 td는 border를 전체로 준다.
 - 기본적으로 테이블에 쓰이는 테그들은 z-index가 다르다.
+
+---
+## 팝업
+팝업에는 크게 3가지가 있다.
+- Popup : 새창
+- Modal : 레이어 팝업
+- Alert : 알림 / 시스템 팝업
+이 중에서 레이어 팝업을 해봤다.
+
+```html
+<div class="popup">
+  <div class="popup_layer">
+    <div class="text_area">
+      <strong class="title">팝업 타이틀</strong>
+      <p class="text">팝업 텍스트 영역</p>
+    </div>
+    <div class="btn_area">
+      <button class="btn">예</button>
+      <button class="btn no">아니오</button>
+    </div>
+  </div>
+  <div class="popup_dimmed"></div>
+</div>
+```
+- html은 팝업창과 배경을 덮는 박스로 구분한다.
+```css
+.popup{
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+}
+.popup_layer{
+  position: absolute;
+  top: 0; bottom: 0; right: 0; left: 0;
+  margin: auto;
+  z-index: 10;
+  width: 300px;
+  height: 150px;
+  background: #fff;
+  padding-bottom: 50px;
+}
+.popup_dimmed{
+  background: #000;
+  opacity: .3;
+  top: 0;left: 0;right: 0;bottom: 0;
+  position: absolute;
+}
+```
+- 팝업 창은 스크롤을 했을 때도 고정되어 화면의 중앙에 나와야 하므로 `fixed`시켜준다.
+- 레이어 팝업이 화면 중앙에 오게 하는 방법으로 `position: absolute`를 한 뒤 상하좌우를 모두 0에 두고, `margin: auto;`를 하였다. 
+
+레이어를 중앙에 배치할 때 고려할 경우는 2가지다.
+1. 팝업 사이즈가 고정일 때
+2. 팝업 사이즈가 가변적일 때
+
+팝업 사이즈가 고정인 경우 `absolute`와 `margin:auto`혹은 마이너스 마진을 이용하면 된다.
+
+팝업사이즈가 가변일 때는 `display: inline-block`을 이용한다.
+```css
+.popup {
+	position: fixed;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	text-align: center;
+}
+
+.popup:after {
+	display: inline-block;
+	vertical-align: middle;
+	width: 0;
+	height: 100%;
+	content: '';
+}
+
+.popup_layer {
+	position: relative;
+	display: inline-block;
+	vertical-align: middle;
+	width: 300px;
+	min-height: 150px;
+	padding-bottom: 50px;
+	background: #fff;
+	z-index: 10;
+}
+```
+- `.popup_layer`를 inline-block 요소로 만들어 `.popup`의 `text-align: center`로 가로 중앙 정렬을 한다.
+-  `.popup` 요소 안에 빈 요소 혹은 가상요소를 추가하여 `.popup_layer`와 `vertical-align: middle;` 로 세로 중앙정렬
+
+다른 방법으로는 `display:table`을 이용하는 것이다.

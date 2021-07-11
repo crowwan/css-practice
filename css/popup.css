@@ -1,0 +1,43 @@
+.popup{
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+}
+.popup_layer{
+  position: absolute;
+  top: 0; bottom: 0; right: 0; left: 0;
+  margin: auto;
+  z-index: 10;
+  width: 300px;
+  height: 150px;
+  background: #fff;
+  padding-bottom: 50px;
+}
+.popup_dimmed{
+  background: #000;
+  opacity: .3;
+  top: 0;left: 0;right: 0;bottom: 0;
+  position: absolute;
+}
+.text_area{
+  padding: 50px 30px 30px;
+  text-align: center;
+}
+.btn_area{
+  position: absolute;
+  left: 0; right: 0;
+  bottom: 0;
+  height: 50px;
+  overflow: hidden;
+}
+.btn{
+  float:left;
+  width: 50%;
+  height: 100%;
+  border: 0;
+  background-color: pink;
+  font-size: 15px;
+  font-weight: bold;
+}
+.btn.no{
+  background: lightblue;
+}
